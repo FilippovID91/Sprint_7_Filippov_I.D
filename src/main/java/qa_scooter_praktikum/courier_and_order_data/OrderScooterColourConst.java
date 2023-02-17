@@ -1,4 +1,6 @@
-package qa_scooter_praktikum;
+package qa_scooter_praktikum.courier_and_order_data;
+
+import qa_scooter_praktikum.courier_and_order_pojo.Order;
 
 import java.io.File;
 import java.util.Collections;

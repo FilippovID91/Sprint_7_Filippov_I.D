@@ -1,13 +1,23 @@
-package qa_scooter_praktikum;
+package qa_scooter_praktikum.courier_and_order_pojo;
 
-public class CourierLogin {
+public class CourierRegistration {
 
     private String login;
     private String password;
+    private String firstName;
 
-    public CourierLogin(String login, String password) {
+    public CourierRegistration(String login, String password, String firstName) {
         this.login = login;
         this.password = password;
+        this.firstName = firstName;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getLogin() {

@@ -10,8 +10,8 @@ import org.junit.runners.Parameterized;
 
 import java.io.File;
 
-import static qa_scooter_praktikum.OrderScooterColourConst.*;
-import static qa_scooter_praktikum.StepsOrder.*;
+import static qa_scooter_praktikum.courier_and_order_data.OrderScooterColourConst.*;
+import static qa_scooter_praktikum.steps.StepsOrder.*;
 
 @RunWith(Parameterized.class)
 public class OrderFileJsonParamTest {

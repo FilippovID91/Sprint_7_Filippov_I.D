@@ -2,7 +2,7 @@ import io.restassured.RestAssured;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.Before;
 
-import static qa_scooter_praktikum.CourierLoginData.*;
+import static qa_scooter_praktikum.courier_and_order_data.CourierLoginData.*;
 
 public class SetUpLogin {
 

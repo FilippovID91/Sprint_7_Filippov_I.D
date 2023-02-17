@@ -1,25 +1,24 @@
-package qa_scooter_praktikum;
+package qa_scooter_praktikum.steps;
 
 import io.qameta.allure.Step;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
+import qa_scooter_praktikum.client.BaseHttpClient;
+import qa_scooter_praktikum.courier_and_order_pojo.CourierLogin;
+import qa_scooter_praktikum.courier_and_order_pojo.CourierRegistration;
+import qa_scooter_praktikum.courier_and_order_pojo.Order;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.notNullValue;
 
-public class StepsRegAndLogin {
+public class StepsRegAndLogin extends BaseHttpClient {
 
     // POST COURIER
     @Step("Регистрация нового курьера с валидными данными")
     public static Response registrationValidData(String login, String pass, String name) {
         CourierRegistration courierLogin = new CourierRegistration(login, pass, name);
-        return given()
-                .header("Content-type", "application/json")
-                .and()
-                .body(courierLogin)
-                .when()
-                .post("/api/v1/courier");
+        return doPostRequestWithObject("/api/v1/courier", courierLogin);
     }
 
 
@@ -55,13 +54,7 @@ public class StepsRegAndLogin {
     @Step("Запрос номера id курьера по его логину и паролю")
     public static int getValidCourierId(String login, String pass) {
         CourierLogin courierId = new CourierLogin(login, pass);
-        Response responseCourierLogin =
-                given()
-                        .header("Content-type", "application/json")
-                        .and()
-                        .body(courierId)
-                        .when()
-                        .post("/api/v1/courier/login");
+        Response responseCourierLogin = doPostRequestWithObject("/api/v1/courier/login", courierId);
         JsonPath jsnPath = responseCourierLogin.jsonPath();
         return jsnPath.get("id");
     }
@@ -69,24 +62,14 @@ public class StepsRegAndLogin {
     @Step("Проверка наличия номера id курьера по его логину и паролю")
     public static void checkLoginAndPassReturnId(String login, String pass) {
         CourierLogin courierId = new CourierLogin(login, pass);
-        Response responseLogin = given()
-                .header("Content-type", "application/json")
-                .and()
-                .body(courierId)
-                .when()
-                .post("/api/v1/courier/login");
+        Response responseLogin = doPostRequestWithObject("/api/v1/courier/login", courierId);
         responseLogin.then().body("id", notNullValue());
     }
 
     @Step("Запрос номера id курьера по его логину и паролю")
     public static void checkNoLoginOrPassReturnError(String login, String pass) {
         CourierLogin courierId = new CourierLogin(login, pass);
-        Response responseLogin = given()
-                .header("Content-type", "application/json")
-                .and()
-                .body(courierId)
-                .when()
-                .post("/api/v1/courier/login");
+        Response responseLogin = doPostRequestWithObject("/api/v1/courier/login", courierId);
         responseLogin.then()
                 .body("code", equalTo(400))
                 .and()
@@ -98,12 +81,7 @@ public class StepsRegAndLogin {
     @Step("Cистема вернёт ошибку, если неправильно указать логин или пароль")
     public static void checkWrongLoginOrPassReturnError(String login, String pass) {
         CourierLogin courierId = new CourierLogin(login, pass);
-        Response responseLogin = given()
-                .header("Content-type", "application/json")
-                .and()
-                .body(courierId)
-                .when()
-                .post("/api/v1/courier/login");
+        Response responseLogin = doPostRequestWithObject("/api/v1/courier/login", courierId);
         responseLogin.then()
                 .body("code", equalTo(404))
                 .and()
@@ -115,10 +93,7 @@ public class StepsRegAndLogin {
     //  DELETE COURIER
     @Step("Удаление курьера по его номеру - статус 200 и ответ ok: true.")
     public static void deleteCourier(int courierId) {
-        Response responseDelete = given()
-                .header("Content-type", "application/json")
-                .when()
-                .delete(String.format("/api/v1/courier/%s", courierId));
+        Response responseDelete = doDeleteRequest("/api/v1/courier/%s", courierId);
         responseDelete.then()
                 .body("ok", equalTo(true))
                 .and()

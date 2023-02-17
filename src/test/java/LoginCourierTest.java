@@ -4,8 +4,8 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.junit4.DisplayName;
 import org.junit.Test;
 
-import static qa_scooter_praktikum.CourierLoginData.*;
-import static qa_scooter_praktikum.StepsRegAndLogin.*;
+import static qa_scooter_praktikum.courier_and_order_data.CourierLoginData.*;
+import static qa_scooter_praktikum.steps.StepsRegAndLogin.*;
 
 public class LoginCourierTest extends SetUpLogin {
 

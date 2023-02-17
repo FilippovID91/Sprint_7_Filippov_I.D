@@ -5,8 +5,8 @@ import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.Response;
 import org.junit.Test;
 
-import static qa_scooter_praktikum.CourierLoginData.*;
-import static qa_scooter_praktikum.StepsRegAndLogin.*;
+import static qa_scooter_praktikum.courier_and_order_data.CourierLoginData.*;
+import static qa_scooter_praktikum.steps.StepsRegAndLogin.*;
 
 public class CreateCourierTest extends SetUpLogin {
 

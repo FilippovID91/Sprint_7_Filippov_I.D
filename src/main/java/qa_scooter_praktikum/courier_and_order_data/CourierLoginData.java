@@ -1,4 +1,4 @@
-package qa_scooter_praktikum;
+package qa_scooter_praktikum.courier_and_order_data;
 
 import org.apache.commons.lang3.RandomStringUtils;
 
