@@ -1,0 +1,14 @@
+{
+        "firstName":"Иван",
+        "lastName":"Филиппов",
+        "address":"г. Екатеринбург, ул. Чайковского",
+        "metroStation":6,
+        "phone":"+79049811113",
+        "rentTime":5,
+        "deliveryDate":"2023-03-03",
+        "comment":"Прошу не опаздывать, цвет самоката очень важен!",
+        "color":[
+        "GREY",
+        "BLACK"
+        ]
+        }
